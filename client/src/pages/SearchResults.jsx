@@ -13,7 +13,7 @@ const SearchResults = () => {
     if (query) {
       setLoading(true);
       setError(null);
-      fetch(`http://localhost:3001/api/search?q=${query}`)
+      fetch(`https://animeanytime-backend.onrender.com/api/search?q=${query}`)
         .then((response) => response.json())
         .then((data) => {
           setSearchResults(data.data);

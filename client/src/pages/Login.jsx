@@ -27,7 +27,7 @@ const Login = () => {
     setError('');
     
     try {
-      const response = await axios.post('http://localhost:3001/api/auth/login', formData);
+      const response = await axios.post('https://animeanytime-backend.onrender.com/api/auth/login', formData);
       const { token, user } = response.data;
       login(user, token);
       setUsername(user.username);

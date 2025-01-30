@@ -11,7 +11,7 @@ const Home = () => {
   useEffect(() => {
     // Fetch top-rated anime
     axios
-      .get("http://localhost:3001/api/top-anime")
+      .get("https://animeanytime-backend.onrender.com/api/top-anime")
       .then((response) => setTopAnime(response.data.data))
       .catch((error) => console.error(error));
   }, []);

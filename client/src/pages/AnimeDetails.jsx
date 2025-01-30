@@ -27,7 +27,7 @@ const AnimeDetails = () => {
 
     try {
       setAddingToCollection(true);
-      const response = await axios.post('http://localhost:3001/api/collection/add', {
+      const response = await axios.post('https://animeanytime-backend.onrender.com/api/collection/add', {
         animeId: anime.mal_id,
         title: anime.title,
         image_url: anime.images.jpg.image_url

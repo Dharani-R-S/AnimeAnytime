@@ -14,7 +14,7 @@ const Signup = () => {
     setError(""); // Clear previous errors
     
     try {
-      const response = await axios.post("http://localhost:3001/api/auth/signup", {
+      const response = await axios.post("https://animeanytime-backend.onrender.com/api/auth/signup", {
         username,
         email,
         password,

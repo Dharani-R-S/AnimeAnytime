@@ -20,7 +20,7 @@ const Profile = () => {
 
   const fetchCollection = async () => {
     try {
-      const response = await axios.get('http://localhost:3001/api/collection', {
+      const response = await axios.get('https://animeanytime-backend.onrender.com/api/collection', {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         }
@@ -36,7 +36,7 @@ const Profile = () => {
   const handleRemoveFromCollection = async (animeId, e) => {
     e.stopPropagation(); // Prevent triggering card click
     try {
-      await axios.delete(`http://localhost:3001/api/collection/remove/${animeId}`, {
+      await axios.delete(`https://animeanytime-backend.onrender.com/api/collection/remove/${animeId}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         }
