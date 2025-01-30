@@ -49,6 +49,19 @@ mongoose
 app.use("/api/auth", authRoutes);
 app.use("/api/collection", collectionRoutes);
 
+// Root route to verify server is running
+app.get("/", (req, res) => {
+  res.json({
+    status: "online",
+    message: "AnimeAnytime API is running",
+    endpoints: {
+      auth: "/api/auth/*",
+      collection: "/api/collection/*",
+      anime: "/api/anime/:id"
+    }
+  });
+});
+
 // Fetch anime details from MyAnimeList API
 app.get("/api/anime/:id", async (req, res) => {
   try {
@@ -100,14 +113,23 @@ app.get("/api/search", async (req, res) => {
 
 // Handle 404 errors
 app.use((req, res) => {
-  res.status(404).json({ message: "Route not found" });
+  console.log(`404 Error: ${req.method} ${req.originalUrl} not found`);
+  res.status(404).json({ 
+    message: "Route not found",
+    requestedUrl: req.originalUrl,
+    availableEndpoints: {
+      auth: "/api/auth/*",
+      collection: "/api/collection/*",
+      anime: "/api/anime/:id"
+    }
+  });
 });
 
 // Global error handling middleware
 app.use((err, req, res, next) => {
-  console.error("Server Error:", err);
+  console.error('Error:', err);
   res.status(500).json({ 
-    message: "Something went wrong!",
-    error: process.env.NODE_ENV === "development" ? err.message : undefined
+    message: "Internal server error",
+    error: process.env.NODE_ENV === 'development' ? err.message : 'An error occurred'
   });
 });
